@@ -1,0 +1,39 @@
+.table-users {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  div {
+    display: flex;
+    align-items: center;
+
+    button {
+      margin-left: 10px;
+      margin-top: 2rem;
+      background: rgb(59, 56, 56);
+      border: none;
+      color: white;
+      padding: 10px 40px;
+      font-size: 17px;
+      font-weight: 500;
+      border-radius: 5px;
+      &:hover {
+        background: white;
+        color: rgb(59, 56, 56);
+        border: 1px solid rgb(59, 56, 56);
+      }
+    }
+  }
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  tr {
+    border-bottom: 1px solid #ddd;
+    td {
+      padding: 10px;
+    }
+  }
+}
