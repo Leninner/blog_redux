@@ -3,24 +3,15 @@ import '../../assets/styles/components/Users.scss';
 import { useNavigate } from 'react-router';
 import { connect } from 'react-redux';
 import { usuariosFetched } from '../../actions';
-import axios from 'axios';
 
 const Users = (props) => {
   const { usuarios } = props;
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios.get('https://jsonplaceholder.typicode.com/users');
-      props.usuariosFetched(result.data);
-    };
-    fetchData();
-    // es para evitar el warning de este llamado de useEffect
-    // TODO: Learn how to use useEffect in async functions
-    // eslint-disable-next-line
+    props.usuariosFetched();
+    //eslint-disable-next-line
   }, []);
-
-  console.log(usuarios);
 
   return (
     <div className='table-users'>
