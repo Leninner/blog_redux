@@ -1,27 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 import '../../assets/styles/components/Users.scss';
 import { useNavigate } from 'react-router';
+import { connect } from 'react-redux';
+import { usuariosFetched } from '../../actions';
+import axios from 'axios';
 
-const Users = () => {
-  const URL = 'https://jsonplaceholder.typicode.com/users';
-  const [users, setUsers] = useState([]);
+const Users = (props) => {
+  const { usuarios } = props;
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await axios(URL);
-      console.log(response.data);
-      return setUsers(response.data);
-    }
+    const fetchData = async () => {
+      const result = await axios.get('https://jsonplaceholder.typicode.com/users');
+      props.usuariosFetched(result.data);
+    };
     fetchData();
+    // es para evitar el warning de este llamado de useEffect
+    // TODO: Learn how to use useEffect in async functions
+    // eslint-disable-next-line
   }, []);
+
+  console.log(usuarios);
 
   return (
     <div className='table-users'>
       <table>
         <thead>
-          {users?.map((user) => {
+          {usuarios?.map((user) => {
             return (
               <tr key={user.id}>
                 <td>{user.name}</td>
@@ -40,4 +45,14 @@ const Users = () => {
   );
 };
 
-export default Users;
+const mapStateToProps = (state) => {
+  return {
+    usuarios: state.usuarios,
+  };
+};
+
+const mapDispatchToProps = {
+  usuariosFetched,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Users);
