@@ -10,8 +10,6 @@ const initialState = {
   usuarios: [],
 };
 
-//const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
 const AppStore = createStore(reducer, initialState, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
