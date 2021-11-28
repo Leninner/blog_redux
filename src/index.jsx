@@ -8,6 +8,8 @@ import reduxThunk from 'redux-thunk';
 
 const initialState = {
   usuarios: [],
+  cargando: false,
+  error: '',
 };
 
 const AppStore = createStore(reducer, initialState, applyMiddleware(reduxThunk));
