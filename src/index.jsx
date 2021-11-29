@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducer from './reducers';
 import reduxThunk from 'redux-thunk';
+import './/assets/styles/icons/index.scss';
 
 const initialState = {
   usuarios: [],

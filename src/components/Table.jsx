@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Table = ({ usuarios }) => {
   const navigate = useNavigate();
@@ -9,12 +10,17 @@ const Table = ({ usuarios }) => {
     <>
       <table>
         <thead>
-          {usuarios?.map((user) => {
+          {usuarios?.map((user, key) => {
             return (
               <tr key={user.id}>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.website}</td>
+                <td>
+                  <Link to={`/publications/${key}`}>
+                    <div className='eye-solid icon'></div>
+                  </Link>
+                </td>
               </tr>
             );
           })}
