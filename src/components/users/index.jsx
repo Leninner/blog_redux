@@ -8,7 +8,6 @@ import Table from '../Table';
 
 const Users = (props) => {
   const { cargando, error } = props;
-
   useEffect(() => {
     props.usuariosFetched();
     //eslint-disable-next-line
@@ -17,7 +16,7 @@ const Users = (props) => {
   const putContent = () => {
     if (cargando) return <Spinner />;
 
-    if (error) return <Fatal mensaje={error} />;
+    if (error) return <Fatal mensaje={props.error} />;
 
     return <Table />;
   };
@@ -25,11 +24,8 @@ const Users = (props) => {
   return <div className='table-users'>{putContent()}</div>;
 };
 
-const mapStateToProps = (state) => {
-  return {
-    cargando: state.cargando,
-    error: state.error,
-  };
+const mapStateToProps = (reducers) => {
+  return reducers.usuariosReducer;
 };
 
 const mapDispatchToProps = {

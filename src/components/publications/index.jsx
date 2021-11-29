@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { usuariosFetched } from '../../actions';
 
 const Publications = (props) => {
+  const { usuarios } = props;
   React.useEffect(() => {
-    return !props.usuarios.length && props.usuariosFetched();
+    return !usuarios.length && props.usuariosFetched();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
