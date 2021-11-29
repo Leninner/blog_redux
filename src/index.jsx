@@ -7,13 +7,7 @@ import reducer from './reducers';
 import reduxThunk from 'redux-thunk';
 import './/assets/styles/icons/index.scss';
 
-const initialState = {
-  usuarios: [],
-  cargando: false,
-  error: '',
-};
-
-const AppStore = createStore(reducer, initialState, applyMiddleware(reduxThunk));
+const AppStore = createStore(reducer, {}, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
   <Provider store={AppStore}>
