@@ -27,7 +27,6 @@ const Users = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    usuarios: state.usuarios,
     cargando: state.cargando,
     error: state.error,
   };
