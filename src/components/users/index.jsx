@@ -8,8 +8,9 @@ import Table from './Table';
 
 const Users = (props) => {
   const { cargando, error } = props;
+
   useEffect(() => {
-    props.usuariosFetched();
+    if (!props.usuarios.length) props.usuariosFetched();
     //eslint-disable-next-line
   }, []);
 

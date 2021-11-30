@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { USUARIOS_FETCHED, CARGANDO, ERROR } from '../types';
+import { USUARIOS_FETCHED, CARGANDO, ERROR } from '../types/usuariosTypes';
 
 export const usuariosFetched = () => async (dispatch) => {
   dispatch({

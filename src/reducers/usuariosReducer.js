@@ -1,4 +1,4 @@
-import { USUARIOS_FETCHED, CARGANDO, ERROR } from '../types';
+import { USUARIOS_FETCHED, CARGANDO, ERROR } from '../types/usuariosTypes';
 
 const INITIAL_STATE = {
   usuarios: [],
