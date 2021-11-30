@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as usuariosAction from '../../actions/usuariosAction';
 import { Spinner } from '../Spinner';
 import { Fatal } from '../Fatal';
-import Table from '../Table';
+import Table from './Table';
 
 const Users = (props) => {
   const { cargando, error } = props;
