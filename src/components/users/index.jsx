@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import '../../assets/styles/components/Users.scss';
 import { connect } from 'react-redux';
-import { usuariosFetched } from '../../actions';
+import * as usuariosAction from '../../actions/usuariosAction';
 import { Spinner } from '../Spinner';
 import { Fatal } from '../Fatal';
 import Table from '../Table';
@@ -29,7 +29,7 @@ const mapStateToProps = (reducers) => {
 };
 
 const mapDispatchToProps = {
-  usuariosFetched,
+  ...usuariosAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users);

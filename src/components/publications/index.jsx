@@ -1,10 +1,11 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { usuariosFetched } from '../../actions';
+import * as usuariosFetched from '../../actions/usuariosAction';
+import * as getPublicaciones from '../../actions/publicacionesAction';
 
 const Publications = (props) => {
-  const { usuarios } = props;
+  const { usuarios } = props.usuariosReducer;
   React.useEffect(() => {
     return !usuarios.length && props.usuariosFetched();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -22,12 +23,13 @@ const Publications = (props) => {
   );
 };
 
-const mapStateToProps = (reducers) => {
-  return reducers.usuariosReducer;
+const mapStateToProps = ({ usuariosReducer, publicacionesReducer }) => {
+  return { usuariosReducer, publicacionesReducer };
 };
 
 const mapDispatchToProps = {
-  usuariosFetched,
+  ...usuariosFetched,
+  ...getPublicaciones,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Publications);
