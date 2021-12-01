@@ -3,33 +3,44 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as usuariosFetched from '../../actions/usuariosAction';
 import * as getPublicaciones from '../../actions/publicacionesAction';
+import { Spinner } from '../Spinner';
+import { Fatal } from '../Fatal';
 
 const { usuariosFetched: usuariosFetchedAction } = usuariosFetched;
 const { getPublicacion: getPublicacionesAction } = getPublicaciones;
 
 const Publications = (props) => {
-  const { usuarios } = props.usuariosReducer;
+  const { usuarios, error, cargando } = props.usuariosReducer;
   const { key } = useParams();
 
-  useEffect(
-    // eslint-disable-next-line
-    async () => {
-      !usuarios.length && (await props.usuariosFetchedAction());
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      props.getPublicacionesAction(key);
-    },
-    // eslint-disable-next-line
-    []
-  );
+  // eslint-disable-next-line
+  useEffect(async () => {
+    if (!usuarios.length) {
+      return await props.usuariosFetchedAction();
+    }
+    if (error) {
+      return;
+    }
+
+    if (!('publicaciones_key' in usuarios[key])) {
+      return props.getPublicacionesAction(key);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   console.log(props);
 
-  return (
-    <div>
-      <h1>Publications of</h1>
-      {key}
-    </div>
-  );
+  const ponerUsuario = () => {
+    if (error) return <Fatal mensaje={error} />;
+
+    if (cargando || !usuarios.length) return <Spinner />;
+
+    const nombre = usuarios[key].name;
+
+    return <h1>Publications of {nombre}</h1>;
+  };
+
+  return <div>{ponerUsuario()}</div>;
 };
 
 const mapStateToProps = ({ usuariosReducer, publicacionesReducer }) => {
