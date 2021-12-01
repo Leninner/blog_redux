@@ -18,6 +18,7 @@ const Publications = (props) => {
     if (!usuarios.length) {
       return await props.usuariosFetchedAction();
     }
+
     if (error) {
       return;
     }
