@@ -41,6 +41,23 @@ const Publications = (props) => {
     return <h1>Publications of {nombre}</h1>;
   };
 
+  const ponerPublications = () => {
+    const {
+      usuariosReducer,
+      usuariosReducer: { usuarios },
+      publicacionesReducer,
+      publicacionesReducer: { publicaciones },
+    } = props;
+
+    if (usuariosReducer.error) return;
+    if (!usuarios.length) return;
+
+    if (publicacionesReducer.cargando) return <Spinner />;
+    if (publicacionesReducer.error) return <Fatal mensaje={publicacionesReducer.error} />;
+    if (publicaciones.length === 0) return;
+    if (!('publicaciones_key' in usuarios[key])) return;
+  };
+
   return <div>{ponerUsuario()}</div>;
 };
 
