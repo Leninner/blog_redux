@@ -6,7 +6,7 @@ export const usuariosFetched = () => async (dispatch) => {
     type: CARGANDO,
   });
   try {
-    const URL = 'https://jsonplaceholder.typicode.com/users';
+    const URL = 'https://jsonplaceholder.typicode.com/userss';
     const response = await axios(URL);
     dispatch({
       type: USUARIOS_FETCHED,

@@ -56,9 +56,25 @@ const Publications = (props) => {
     if (publicacionesReducer.error) return <Fatal mensaje={publicacionesReducer.error} />;
     if (publicaciones.length === 0) return;
     if (!('publicaciones_key' in usuarios[key])) return;
+
+    const { publicaciones_key } = usuarios[key];
+
+    return publicaciones[publicaciones_key].map((publicacion) => {
+      return (
+        <div key={publicacion.id} className='pubTitle'>
+          <h2>{publicacion.title}</h2>
+          <h3>{publicacion.body}</h3>
+        </div>
+      );
+    });
   };
 
-  return <div>{ponerUsuario()}</div>;
+  return (
+    <div>
+      {ponerUsuario()}
+      {ponerPublications()}
+    </div>
+  );
 };
 
 const mapStateToProps = ({ usuariosReducer, publicacionesReducer }) => {
